@@ -2,14 +2,12 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\Services\FilesDataDownloader;
 use App\Services\DataImporter;
-use Illuminate\Support\Facades\Log;
+use App\Services\FilesDataDownloader;
+use Illuminate\Console\Command;
 
 class ImportOpenFoodFactsData extends Command
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -25,7 +23,7 @@ class ImportOpenFoodFactsData extends Command
     protected $description = 'Import data from Open Food Facts';
 
     protected $filesDataDownloader;
-    
+
     protected $dataImporter;
 
     public function __construct(FilesDataDownloader $filesDataDownloader, DataImporter $dataImporter)
@@ -34,21 +32,23 @@ class ImportOpenFoodFactsData extends Command
         $this->filesDataDownloader = $filesDataDownloader;
         $this->dataImporter = $dataImporter;
     }
- 
+
     /**
      * Execute the console command.
      */
     public function handle()
     {
-       
-        $files = $this->filesDataDownloader->getFiles();
+        try {
+            $files = $this->filesDataDownloader->getFiles();
 
-        foreach ($files as $file){
-            $jsonData = $this->filesDataDownloader->downloadFile($file);
-            $this->dataImporter->importData($jsonData);
+            foreach ($files as $file) {
+                $jsonData = $this->filesDataDownloader->getFileContent($file);
+                $this->dataImporter->importData($jsonData);
+            }
+
+            $this->info('Data imported successfully');
+        } catch (\Throwable $exception) {
+            \Sentry\captureException($exception);
         }
-
-        $this->info('Data imported successfully');
-
     }
 }

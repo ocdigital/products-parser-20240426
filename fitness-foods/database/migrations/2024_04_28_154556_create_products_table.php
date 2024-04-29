@@ -16,14 +16,14 @@ return new class extends Migration
             $table->bigInteger('code');
             $table->enum('status', ['published', 'draft', 'trash'])->default('draft');
             $table->timestamp('imported_t');
-            $table->string('url',1000);
+            $table->string('url', 1000);
             $table->string('creator');
             $table->timestamp('created_t');
             $table->timestamp('last_modified_t');
             $table->string('product_name');
             $table->string('quantity');
             $table->string('brands');
-            $table->string('categories',1000);
+            $table->string('categories', 1000);
             $table->string('labels');
             $table->string('cities')->nullable();
             $table->string('purchase_places');

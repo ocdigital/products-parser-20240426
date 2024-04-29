@@ -6,11 +6,12 @@ use App\Models\Product;
 
 class DataImporter
 {
-    public function importData($products){
+    public function importData($products)
+    {
 
-        foreach ($products as $product){      
-            
-            $product->code = trim($product->code,'"') ?? random_int(100000000, 999999999);
+        foreach ($products as $product) {
+
+            $product->code = trim($product->code, '"') ?? random_int(100000000, 999999999);
             $product->status = $product->status ?? 'draft';
             $product->imported_t = $product->imported_t ?? now();
             $product->url = $product->url ?? null;
@@ -35,7 +36,7 @@ class DataImporter
             $product->image_url = $product->image_url ?? null;
             $product->created_at = now();
             $product->updated_at = now();
-            
+
             Product::create((array) $product);
         }
     }
