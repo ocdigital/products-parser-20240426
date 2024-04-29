@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, Searchable;
 
     protected $fillable = [
         'code',
@@ -41,4 +42,9 @@ class Product extends Model
         'created_t' => 'datetime',
         'last_modified_t' => 'datetime',
     ];
+
+    public function searchableAs()
+    {
+        return 'products_index';
+   }
 }
