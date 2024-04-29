@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
-    use HasFactory, HasUuids, Searchable;
+    use HasFactory, HasUuids, Searchable, SoftDeletes;
 
     protected $fillable = [
         'code',
@@ -43,8 +44,20 @@ class Product extends Model
         'last_modified_t' => 'datetime',
     ];
 
+    protected $dates = ['deleted_at'];
+
     public function searchableAs()
     {
         return 'products_index';
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($product) {         
+            $product->status = 'trash';
+            $product->save();
+        });
     }
 }

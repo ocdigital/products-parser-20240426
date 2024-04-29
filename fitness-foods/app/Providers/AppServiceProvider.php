@@ -5,6 +5,9 @@ namespace App\Providers;
 use App\Repositories\ImportHistoryRepository;
 use App\Repositories\ImportHistoryRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\ProductRepositoryInterface;
+use App\Repositories\ProductRepository;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(ImportHistoryRepositoryInterface::class, ImportHistoryRepository::class);
+        $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
     }
 
     /**

@@ -37,6 +37,8 @@ return new class extends Migration
             $table->string('main_category');
             $table->string('image_url');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
