@@ -2,20 +2,20 @@
 
 namespace App\Services;
 
-use App\Models\Product;
 use App\Models\ImportHistory;
+use App\Models\Product;
 
 class DataImporter
 {
     public function importData($products)
-    {         
+    {
         $startTime = microtime(true);
         $totalRecords = count($products);
 
         foreach ($products as $product) {
             try {
                 $productData = [
-                    'code' => trim($product->code,'"') ?? random_int(100000000, 999999999),
+                    'code' => trim($product->code, '"') ?? random_int(100000000, 999999999),
                     'status' => $product->status ?? 'draft',
                     'imported_t' => $product->imported_t ?? now(),
                     'url' => $product->url ?? null,
@@ -40,20 +40,20 @@ class DataImporter
                     'image_url' => $product->image_url ?? null,
                     'created_at' => now(),
                     'updated_at' => now(),
-                ];    
-                        
+                ];
+
                 Product::create($productData);
             } catch (\Throwable $exception) {
                 \Sentry\captureException($exception);
-            }      
+            }
         }
 
         $timeToImport = microtime(true) - $startTime;
-        
+
         $importHistory = [
             'file_name' => $products['file_name'] ?? 'unknown',
             'imported_t' => now(),
-            'total_records' => $totalRecords -1,
+            'total_records' => $totalRecords - 1,
             'time_to_import' => $timeToImport,
         ];
 

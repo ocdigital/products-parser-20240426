@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
-use Carbon\Carbon;
 
 class RecordStartupTime
 {
@@ -17,9 +17,10 @@ class RecordStartupTime
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Cache::has('startup_time')) {
+        if (! Cache::has('startup_time')) {
             Cache::put('startup_time', Carbon::now(), now()->addHours(24));
         }
+
         return $next($request);
     }
 }

@@ -46,5 +46,5 @@ class Product extends Model
     public function searchableAs()
     {
         return 'products_index';
-   }
+    }
 }
