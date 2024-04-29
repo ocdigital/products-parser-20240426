@@ -40,7 +40,6 @@ class ImportOpenFoodFactsData extends Command
     {
         try {
             $files = $this->filesDataDownloader->getFiles();
-
             foreach ($files as $file) {
                 $jsonData = $this->filesDataDownloader->getFileContent($file);
                 $this->dataImporter->importData($jsonData);

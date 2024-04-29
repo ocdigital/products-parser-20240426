@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('import:openfoodfacts')->dailyAt('00:00');
-        $schedule->command('import:openfoodfacts')->everyTenMinutes();
+        // $schedule->command('import:openfoodfacts')->everyTenMinutes();
+        // $schedule->command('import:openfoodfacts')->everyMinute();
 
     }
 

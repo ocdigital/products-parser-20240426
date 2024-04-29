@@ -41,6 +41,8 @@ class FilesDataDownloader
 
             $itemsJson = array_map('json_decode', $first100Items);
 
+            $itemsJson['file_name'] = str_replace('.json.gz', '', $file);
+
             return $itemsJson;
         } catch (\Throwable $exception) {
             \Sentry\captureException($exception);
