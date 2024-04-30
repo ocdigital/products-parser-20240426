@@ -11,8 +11,9 @@ class APIController extends Controller
 
     }
 
-    public function infoApi()
+    public function __invoke()
     {   
         return $this->apiService->getInfoApi();
     }
 }
+
