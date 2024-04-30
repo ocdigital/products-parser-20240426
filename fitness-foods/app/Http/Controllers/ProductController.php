@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
@@ -166,7 +167,7 @@ class ProductController extends Controller
      * )
      */
 
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
         $data = $request->all();
         return $this->productService->update($product, $data);
