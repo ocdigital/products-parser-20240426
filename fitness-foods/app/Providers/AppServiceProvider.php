@@ -4,10 +4,9 @@ namespace App\Providers;
 
 use App\Repositories\ImportHistoryRepository;
 use App\Repositories\ImportHistoryRepositoryInterface;
-use Illuminate\Support\ServiceProvider;
-use App\Repositories\ProductRepositoryInterface;
 use App\Repositories\ProductRepository;
-
+use App\Repositories\ProductRepositoryInterface;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {

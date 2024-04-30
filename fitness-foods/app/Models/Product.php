@@ -55,7 +55,7 @@ class Product extends Model
     {
         parent::boot();
 
-        static::deleting(function ($product) {         
+        static::deleting(function ($product) {
             $product->status = 'trash';
             $product->save();
         });
@@ -63,6 +63,6 @@ class Product extends Model
 
     public function shouldBeSearchable()
     {
-        return !$this->trashed();
+        return ! $this->trashed();
     }
 }

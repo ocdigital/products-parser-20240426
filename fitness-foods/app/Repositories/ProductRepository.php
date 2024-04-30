@@ -10,6 +10,7 @@ class ProductRepository implements ProductRepositoryInterface
     public function update(Product $product, array $data): Product
     {
         $product->update($data);
+
         return $product;
     }
 
@@ -29,10 +30,9 @@ class ProductRepository implements ProductRepositoryInterface
     }
 
     public function search($query): LengthAwarePaginator
-    {      
+    {
         $results = Product::search($query)->paginate(15);
 
         return $results;
     }
-
 }

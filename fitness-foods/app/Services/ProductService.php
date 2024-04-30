@@ -37,5 +37,4 @@ class ProductService
     {
         return $this->productRepository->search($query);
     }
-
 }

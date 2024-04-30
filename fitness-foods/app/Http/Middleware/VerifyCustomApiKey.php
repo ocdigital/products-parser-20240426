@@ -17,7 +17,7 @@ class VerifyCustomApiKey
     {
         $apiKey = config('app.custom_api_key');
 
-        $apiKeyIsValid=(
+        $apiKeyIsValid = (
             ! empty($apiKey) && $request->header('X-Custom-API-Key') === $apiKey
         );
 

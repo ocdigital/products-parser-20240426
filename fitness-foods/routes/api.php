@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\APIController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,20 +16,17 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::group([
     'prefix' => 'v1',
-    'middleware' => 'with_custom_api_key'],function(){
-        
-    Route::get('/', [APIController::class, 'getLastCronRun']);
+    'middleware' => 'with_custom_api_key'], function () {
 
-    Route::apiResource('products', ProductController::class);
-    
-    Route::get('/search', [ProductController::class, 'search']);
-});
+        Route::get('/', [APIController::class, 'getLastCronRun']);
 
+        Route::apiResource('products', ProductController::class);
 
+        Route::get('/search', [ProductController::class, 'search']);
+    });

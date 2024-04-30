@@ -15,8 +15,4 @@ interface ProductRepositoryInterface
     public function allPaginated($perPage = 10): mixed;
 
     public function search($query): mixed;
-
-    
-
-
 }

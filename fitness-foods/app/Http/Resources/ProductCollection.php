@@ -13,7 +13,7 @@ class ProductCollection extends ResourceCollection
      * @return array<int|string, mixed>
      */
     public function toArray(Request $request): array
-    {        
+    {
         return [
             'status' => 'success',
             'data' => $this->collection,
