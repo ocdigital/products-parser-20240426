@@ -60,4 +60,9 @@ class Product extends Model
             $product->save();
         });
     }
+
+    public function shouldBeSearchable()
+    {
+        return !$this->trashed();
+    }
 }

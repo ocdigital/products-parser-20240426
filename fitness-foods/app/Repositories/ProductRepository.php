@@ -27,4 +27,12 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return Product::withTrashed()->paginate($perPage);
     }
+
+    public function search($query): LengthAwarePaginator
+    {      
+        $results = Product::search($query)->paginate(15);
+
+        return $results;
+    }
+
 }

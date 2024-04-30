@@ -32,4 +32,10 @@ class ProductService
     {
         return $this->productRepository->delete($product);
     }
+
+    public function search($query)
+    {
+        return $this->productRepository->search($query);
+    }
+
 }

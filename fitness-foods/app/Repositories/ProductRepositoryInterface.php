@@ -13,6 +13,10 @@ interface ProductRepositoryInterface
     public function findById($id): ?Product;
 
     public function allPaginated($perPage = 10): mixed;
+
+    public function search($query): mixed;
+
     
+
 
 }

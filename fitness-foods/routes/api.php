@@ -23,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/', [APIController::class, 'getLastCronRun']);
 
 Route::apiResource('products', ProductController::class);
+
+Route::get('/search', [ProductController::class, 'search']);
