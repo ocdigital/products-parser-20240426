@@ -16,12 +16,20 @@ use App\Http\Controllers\ProductController;
 |
 */
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', [APIController::class, 'getLastCronRun']);
+Route::group([
+    'prefix' => 'v1',
+    'middleware' => 'with_custom_api_key'],function(){
+        
+    Route::get('/', [APIController::class, 'getLastCronRun']);
 
-Route::apiResource('products', ProductController::class);
+    Route::apiResource('products', ProductController::class);
+    
+    Route::get('/search', [ProductController::class, 'search']);
+});
 
-Route::get('/search', [ProductController::class, 'search']);
+
