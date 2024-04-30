@@ -17,15 +17,15 @@ class ApiService
     public function getInfoApi()
     {
         $lastImport = $this->importHistoryRepository->getLastImportHistory()->created_at;
-        $memoryUsage = memory_get_usage();
+        $memoryUsage = round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
         $dbConnectionStatus = DB::connection()->getPdo() ? 'Connected' : 'Not connected';
-        $executionTime = $this->executionTime();
+        $executionTime = $this->executionTime().' hours';
 
         return [
             'last_cron' => $lastImport,
             'memory_usage' => $memoryUsage,
             'db_connection_status' => $dbConnectionStatus,
-            'execution_time' => $executionTime,
+            'execution_time' => $executionTime
         ];
 
     }
