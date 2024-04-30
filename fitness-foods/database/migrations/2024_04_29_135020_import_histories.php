@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('file_name');
             $table->timestamp('imported_t');
             $table->integer('total_records')->nullable();
-            $table->integer('time_to_import')->nullable();
+            $table->decimal('time_to_import', 10, 2)->nullable(); 
             $table->timestamps();
         });
     }

@@ -8,11 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class ApiService
 {
-    private $importHistoryRepository;
 
-    public function __construct(ImportHistoryRepositoryInterface $importHistoryRepository)
+    public function __construct(protected ImportHistoryRepositoryInterface $importHistoryRepository)
     {
-        $this->importHistoryRepository = $importHistoryRepository;
+      
     }
 
     public function getInfoApi()

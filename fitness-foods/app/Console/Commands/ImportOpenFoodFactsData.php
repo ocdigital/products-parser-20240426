@@ -20,17 +20,11 @@ class ImportOpenFoodFactsData extends Command
      *
      * @var string
      */
-    protected $description = 'Import data from Open Food Facts';
+    // protected $description = 'Import data from Open Food Facts';
 
-    protected $filesDataDownloader;
-
-    protected $dataImporter;
-
-    public function __construct(FilesDataDownloader $filesDataDownloader, DataImporter $dataImporter)
+    public function __construct(protected FilesDataDownloader $filesDataDownloader, protected DataImporter $dataImporter)
     {
         parent::__construct();
-        $this->filesDataDownloader = $filesDataDownloader;
-        $this->dataImporter = $dataImporter;
     }
 
     /**

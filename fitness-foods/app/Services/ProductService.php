@@ -6,11 +6,10 @@ use App\Repositories\ProductRepositoryInterface;
 
 class ProductService
 {
-    protected $productRepository;
 
-    public function __construct(ProductRepositoryInterface $productRepository)
+    public function __construct(protected ProductRepositoryInterface $productRepository)
     {
-        $this->productRepository = $productRepository;
+
     }
 
     public function allPaginated()

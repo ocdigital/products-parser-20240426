@@ -24,7 +24,7 @@ Route::group([
     'prefix' => 'v1',
     'middleware' => 'with_custom_api_key'], function () {
 
-        Route::get('/', [APIController::class, 'getLastCronRun']);
+        Route::get('/', [APIController::class, 'infoApi']);
 
         Route::apiResource('products', ProductController::class);
 

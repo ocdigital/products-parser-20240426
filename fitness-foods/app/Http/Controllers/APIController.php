@@ -5,16 +5,14 @@ namespace App\Http\Controllers;
 use App\Services\ApiService;
 
 class APIController extends Controller
-{
-    private $apiService;
-
-    public function __construct(ApiService $apiService)
+{  
+    public function __construct(protected ApiService $apiService)
     {
-        $this->apiService = $apiService;
+
     }
 
-    public function getLastCronRun()
-    {
+    public function infoApi()
+    {   
         return $this->apiService->getInfoApi();
     }
 }

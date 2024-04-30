@@ -9,7 +9,7 @@ it('list all products', function () {
     $this->withHeaders([
         'X-Custom-API-Key' => 'bgLs9mIGmzR3EUlhitoNdaDygaxUukbr5fnMMCp4q2srqHtwKL5EjAXU46qmdKnn',
     ]);
-    $products = Product::factory()->count(3)->create();
+    Product::factory()->count(3)->create();
 
     $response = $this->get('/api/v1/products');
 

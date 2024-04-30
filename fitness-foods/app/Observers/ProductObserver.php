@@ -26,15 +26,6 @@ class ProductObserver
         $product->searchable();
     }
 
-    /**
-     * Handle the Product "deleted" event.
-     *
-     * @return void
-     */
-    public function deleted(Product $product)
-    {
-        $product->unsearchable();
-    }
 
     /**
      * Handle the Product "restored" event.
