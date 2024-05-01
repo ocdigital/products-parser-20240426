@@ -56,4 +56,3 @@ it('update a product', function () {
     expect($response->status())->toBe(200);
     expect($updatedProduct->product_name)->toBe('Product 1'); // Verificar se o nome do produto foi atualizado corretamente
 });
-

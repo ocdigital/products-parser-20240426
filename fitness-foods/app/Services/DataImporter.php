@@ -46,6 +46,7 @@ class DataImporter
                 Product::create($productData);
             } catch (\Throwable $exception) {
                 \Sentry\captureException($exception);
+
                 continue;
             }
         }
