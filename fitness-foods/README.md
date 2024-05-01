@@ -49,43 +49,43 @@ Primeiramente foi definida a seguinte arquitetura:
 3. **Instale as dependencias para habilitar o Sail**
     ```bash
     composer install
+
+    ```
+4. **Copie p arquivo env**
+    ```bash
+    cp .env.example .env
     ```
 
-4. **Execute o Ambiente em Modo de Segundo Plano:**
+5. **Execute o Ambiente em Modo de Segundo Plano:**
     ```bash
     ./vendor/bin/sail up -d
     ```
 
-4. **Para executar os Testes:**
+6. **Realize a criação das tabelas**
     ```bash
-    docker exec -it expenses_api-app-1 php artisan test
+    ./vendor/bin/sail artisan migrate
     ```
 
+7. **Para executar os Testes:**
+    ```bash
+    ./vendor/bin/sail test
+    ```
+
+7. **Caso queira executar o job de importação imeditamente:**
+    ```bash
+    ./vendor/bin/sail artisan import:openfoodfacts
+    ```
 
 ## Documentação da API
 
-Explore a documentação da API em http://localhost:8000/api/documentation.
+Explore a documentação da API em http://localhost/api/documentation.
 
-Caso queria utilizar Postman, há um arquivo de configuração na raiz do projeto: expenses_api.postman_collection.json
+Caso queria utilizar Postman, há um arquivo de configuração na raiz do projeto: Fitness_Foods.postman_collection.json
 
 ## Algumas informações
 
-Aplicação: http://localhost:8000.
+Aplicação: http://localhost.
 
-Horizon: http://localhost:8000/horizon.
+Horizon: http://localhost/horizon.
 
-MailCatcher: http://localhost:1080.
-
-O backend está utilizando token para atenticação, então é necessário fazer login na api
-para gerar o token.
-
-Passos para gerar a despesa:
--Faça o login com admin e adicione o token a ferramenta (postman ou no Swagger).
-
--Crie um usuário.
-
--Crie um novo cartão atribuindo o id do usuário. 
-
--Crie uma nova despesa utilizando o numero do cartão.
-
--Pode visualizar os emails no MailCatcher e os logs no Horizon 😀
+Qualquer dúvida estou a disposição, obrigado 😀

@@ -26,27 +26,34 @@ it('list all products', function () {
 });
 
 it('show a product', function () {
+    $mockProduct = Product::factory()->create(['product_name' => 'Product 1']);
+
     $mockService = mock(ProductService::class);
     $mockService->shouldReceive('findById')
         ->once()
-        ->andReturn(new Product(['product_name' => 'Product 1']));
+        ->with($mockProduct->id)
+        ->andReturn($mockProduct);
 
     $controller = new ProductController($mockService);
-    $result = $controller->show(1);
+    $result = $controller->show($mockProduct->id);
 
     expect($result)->toBeInstanceOf(\App\Http\Resources\ProductResource::class);
     expect($result->product_name)->toBe('Product 1');
 });
 
 it('update a product', function () {
-    $mockService = mock(ProductService::class);
-    $mockService->shouldReceive('update')
-        ->once()
-        ->andReturn(new Product(['product_name' => 'Product 2']));
+    $this->withHeaders([
+        'X-Custom-API-Key' => 'bgLs9mIGmzR3EUlhitoNdaDygaxUukbr5fnMMCp4q2srqHtwKL5EjAXU46qmdKnn',
+    ]);
+    $product = Product::factory()->create();
 
-    $controller = new ProductController($mockService);
-    $result = $controller->update(request(), new Product(['product_name' => 'Product 1']));
+    $response = $this->put('/api/v1/products/'.$product->id, [
+        'product_name' => 'Product 1',
+    ]);
 
-    expect($result)->toBeInstanceOf(\App\Models\Product::class);
-    expect($result->product_name)->toBe('Product 2');
+    $updatedProduct = Product::find($product->id); // Buscar o produto atualizado do banco de dados
+
+    expect($response->status())->toBe(200);
+    expect($updatedProduct->product_name)->toBe('Product 1'); // Verificar se o nome do produto foi atualizado corretamente
 });
+

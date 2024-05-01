@@ -13,6 +13,7 @@ class DataImporter
         $totalRecords = count($products);
 
         foreach ($products as $product) {
+            // dd($product);
             try {
                 $productData = [
                     'code' => trim($product->code, '"') ?? random_int(100000000, 999999999),
@@ -45,6 +46,7 @@ class DataImporter
                 Product::create($productData);
             } catch (\Throwable $exception) {
                 \Sentry\captureException($exception);
+                continue;
             }
         }
 

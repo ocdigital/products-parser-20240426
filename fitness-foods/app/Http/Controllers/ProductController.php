@@ -112,8 +112,12 @@ class ProductController extends Controller
      *
      * )
      */
-    public function show(Product $product)
+    public function show($productId)
     {
+        $product = $this->productService->findById($productId);
+        if (! $product) {
+            return response()->json(['message' => 'Product not found'], 404);
+        }
         return new ProductResource($product);
     }
 
@@ -173,12 +177,18 @@ class ProductController extends Controller
      *     )
      * )
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, $productId)
     {
         $data = $request->all();
-
-        return $this->productService->update($product, $data);
+        $product = $this->productService->findById($productId);
+        if (! $product) {
+            return response()->json(['message' => 'Product not found'], 404);
+        }
+    
+        $updatedProduct = $this->productService->update($product, $data);
+        return response()->json($updatedProduct, 200);
     }
+    
 
     /**
      * @OA\Delete(

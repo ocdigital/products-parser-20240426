@@ -1,0 +1,263 @@
+{
+	"info": {
+		"_postman_id": "b2d8e53d-d3df-49ba-99f4-77c179bc3bc5",
+		"name": "Fitness_Foods",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12500735"
+	},
+	"item": [
+		{
+			"name": "api-getInfo",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Custom-API-Key",
+						"value": "bgLs9mIGmzR3EUlhitoNdaDygaxUukbr5fnMMCp4q2srqHtwKL5EjAXU46qmdKnn",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products-all",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Custom-API-Key",
+						"value": "bgLs9mIGmzR3EUlhitoNdaDygaxUukbr5fnMMCp4q2srqHtwKL5EjAXU46qmdKnn",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/products/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product-by-id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Custom-API-Key",
+						"value": "bgLs9mIGmzR3EUlhitoNdaDygaxUukbr5fnMMCp4q2srqHtwKL5EjAXU46qmdKnn",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/products/9bed4c82-21da-4e61-8ac9-c6f671530e89",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"products",
+						"9bed4c82-21da-4e61-8ac9-c6f671530e89"
+					],
+					"query": [
+						{
+							"key": "X-Custom-API-Key",
+							"value": "bgLs9mIGmzR3EUlhitoNdaDygaxUukbr5fnMMCp4q2srqHtwKL5EjAXU46qmdKnn",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product-update",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Custom-API-Key",
+						"value": "bgLs9mIGmzR3EUlhitoNdaDygaxUukbr5fnMMCp4q2srqHtwKL5EjAXU46qmdKnn",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product_name\":\"Teste\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/products/9bedd4be-750c-470a-951e-b6542361eff8",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"products",
+						"9bedd4be-750c-470a-951e-b6542361eff8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product-delete",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Custom-API-Key",
+						"value": "bgLs9mIGmzR3EUlhitoNdaDygaxUukbr5fnMMCp4q2srqHtwKL5EjAXU46qmdKnn",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/products/9bed4c82-21da-4e61-8ac9-c6f671530e89",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"products",
+						"9bed4c82-21da-4e61-8ac9-c6f671530e89"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product-search",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Custom-API-Key",
+						"value": "bgLs9mIGmzR3EUlhitoNdaDygaxUukbr5fnMMCp4q2srqHtwKL5EjAXU46qmdKnn",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/search?query=Crackers",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "Crackers"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "http://localhost/api/v1",
+			"type": "string"
+		}
+	]
+}
