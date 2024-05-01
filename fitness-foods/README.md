@@ -1,66 +1,86 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Challenge Truckpag - Fitness Foods
 
-## About Laravel
+Este projeto é uma API REST desenvolvida para o desafio Backend Challenge 20230105.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+>  This is a challenge by [Coodesh](https://coodesh.com/)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Apresentação
 
-## Learning Laravel
+Primeiramente foi definida a seguinte arquitetura:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Ferramentas utilzadas.
+* PHP 8.3
+* Laravel 10
+* Mysql
+* Laravel Horizon
+* Laravel Pint
+* Swagger
+* Pest
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Criação de um sistema monolíto com as seguintes caracteristicas.
+* API REST para atender as consultas da empresa.
+* Sitema de importação automáticas de produtos.
+* Habilitado o Laravel Horizon para o monitoramento dos Jobs.
+* Foram criadas as camadas de Repository, Services, Observes e Form Request para separar as resposabilidades.
+* Sistema dockerizado com Laravel Sail.
+* Automatizaçao do cron e disparo de jobs.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Integrações com plataformas terceiras visando a otimização do projeto.
+* Algolia - Tem a função de otimizar as consultas para o endpoint search
+* Sentry - Para monitorar possíveis erros do Sync de produtos e também receber alertas de todo sistema
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+## Instalação
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. **Clone o Repositório:**
+    ```bash
+    git clone https://github.com/ocdigital/products-parser-20240426.git
+    ```
 
-## Contributing
+2. **Acesse o Diretório do Projeto:**
+    ```bash
+    cd products-parser-20240426/fitness-foods
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Execute o Ambiente em Modo de Segundo Plano:**
+    ```bash
+    ./vendor/bin/sail up -d
+    ```
 
-## Code of Conduct
+4. **Para executar os Testes:**
+    ```bash
+    docker exec -it expenses_api-app-1 php artisan test
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+## Documentação da API
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Explore a documentação da API em http://localhost:8000/api/documentation.
 
-## License
+Caso queria utilizar Postman, há um arquivo de configuração na raiz do projeto: expenses_api.postman_collection.json
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Algumas informações
+
+Aplicação: http://localhost:8000.
+
+Horizon: http://localhost:8000/horizon.
+
+MailCatcher: http://localhost:1080.
+
+O backend está utilizando token para atenticação, então é necessário fazer login na api
+para gerar o token.
+
+Passos para gerar a despesa:
+-Faça o login com admin e adicione o token a ferramenta (postman ou no Swagger).
+
+-Crie um usuário.
+
+-Crie um novo cartão atribuindo o id do usuário. 
+
+-Crie uma nova despesa utilizando o numero do cartão.
+
+-Pode visualizar os emails no MailCatcher e os logs no Horizon 😀
