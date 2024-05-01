@@ -46,7 +46,12 @@ Primeiramente foi definida a seguinte arquitetura:
     cd products-parser-20240426/fitness-foods
     ```
 
-3. **Execute o Ambiente em Modo de Segundo Plano:**
+3. **Instale as dependencias para habilitar o Sail**
+    ```bash
+    composer install
+    ```
+
+4. **Execute o Ambiente em Modo de Segundo Plano:**
     ```bash
     ./vendor/bin/sail up -d
     ```
