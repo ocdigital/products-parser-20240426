@@ -26,7 +26,6 @@ class ProductObserver
         $product->searchable();
     }
 
-
     /**
      * Handle the Product "restored" event.
      *

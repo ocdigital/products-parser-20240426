@@ -8,16 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 class ApiService
 {
-
     public function __construct(protected ImportHistoryRepositoryInterface $importHistoryRepository)
     {
-      
+
     }
 
     public function getInfoApi()
     {
         $lastImport = $this->importHistoryRepository->getLastImportHistory()->created_at;
-        $memoryUsage = round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
+        $memoryUsage = round(memory_get_usage() / 1024 / 1024, 2).' MB';
         $dbConnectionStatus = DB::connection()->getPdo() ? 'Connected' : 'Not connected';
         $executionTime = $this->executionTime().' hours';
 
@@ -25,7 +24,7 @@ class ApiService
             'last_cron' => $lastImport,
             'memory_usage' => $memoryUsage,
             'db_connection_status' => $dbConnectionStatus,
-            'execution_time' => $executionTime
+            'execution_time' => $executionTime,
         ];
 
     }

@@ -49,7 +49,7 @@ class DataImporter
         }
 
         $timeToImport = round(microtime(true) - $startTime, 2);
-    
+
         $importHistory = [
             'file_name' => $products['file_name'] ?? 'unknown',
             'imported_t' => now(),

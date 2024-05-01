@@ -12,10 +12,10 @@ class ImportHistoryRepository implements ImportHistoryRepositoryInterface
     }
 
     public function getLastImportHistory(): ImportHistory
-    {   
+    {
         $lastImport = ImportHistory::latest()->first();
 
-        if (!$lastImport) {
+        if (! $lastImport) {
             return new ImportHistory();
         }
 

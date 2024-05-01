@@ -34,7 +34,6 @@ use Illuminate\Http\Request;
  *     description="Operações relacionadas aos produtos"
  * )
  */
-
 class ProductController extends Controller
 {
     public function __construct(protected ProductService $productService)
@@ -42,20 +41,22 @@ class ProductController extends Controller
 
     }
 
-
     /**
      * @OA\Get(
      *     path="/api/v1/products",
      *     tags={"Products"},
      *     summary="Retorna uma lista de produtos",
      *     security={{"apiKey":{}}},
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Sucesso",
+     *
      *         @OA\MediaType(
      *             mediaType="application/json"
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=500,
      *         description="Erro interno do servidor"
@@ -66,8 +67,6 @@ class ProductController extends Controller
      *     )
      * )
      */
-
-
     public function index(Request $request)
     {
         $perPage = $request->input('per_page', 10);
@@ -76,7 +75,7 @@ class ProductController extends Controller
         return new ProductCollection($products);
     }
 
-        /**
+    /**
      * @OA\Get(
      *     path="/api/v1/products/{id}",
      *     tags={"Products"},
@@ -110,14 +109,13 @@ class ProductController extends Controller
      *         response=500,
      *         description="Erro interno do servidor"
      *     ),
-     *     
+     *
      * )
-     */ 
+     */
     public function show(Product $product)
     {
         return new ProductResource($product);
     }
-
 
     /**
      * @OA\Put(
@@ -125,33 +123,42 @@ class ProductController extends Controller
      *     tags={"Products"},
      *     summary="Atualiza um produto",
      *     security={{"apiKey":{}}},
+     *
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
+     *
      *         @OA\Schema(
      *             type="string"
      *         )
      *     ),
+     *
      *     @OA\RequestBody(
      *         required=true,
+     *
      *         @OA\MediaType(
      *             mediaType="application/json",
+     *
      *             @OA\Schema(
+     *
      *                 @OA\Property(
      *                     property="name",
      *                     type="string"
-     *                 ),     *                 
+     *                 ),     *
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Produto atualizado com sucesso",
+     *
      *         @OA\MediaType(
      *             mediaType="application/json"
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=404,
      *         description="Produto não encontrado"
@@ -166,10 +173,10 @@ class ProductController extends Controller
      *     )
      * )
      */
-
     public function update(UpdateProductRequest $request, Product $product)
     {
         $data = $request->all();
+
         return $this->productService->update($product, $data);
     }
 
@@ -179,21 +186,26 @@ class ProductController extends Controller
      *     tags={"Products"},
      *     summary="Deleta um produto",
      *     security={{"apiKey":{}}},
+     *
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
+     *
      *         @OA\Schema(
      *             type="string"
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Produto deletado com sucesso",
+     *
      *         @OA\MediaType(
      *             mediaType="application/json"
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=404,
      *         description="Produto não encontrado"
@@ -208,7 +220,6 @@ class ProductController extends Controller
      *     )
      * )
      */
-
     public function destroy(Product $product)
     {
         $result = $this->productService->delete($product);
@@ -225,21 +236,26 @@ class ProductController extends Controller
      *     tags={"Products"},
      *     summary="Busca produtos",
      *     security={{"apiKey":{}}},
+     *
      *     @OA\Parameter(
      *         name="query",
      *         in="query",
      *         required=true,
+     *
      *         @OA\Schema(
      *             type="string"
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Sucesso",
+     *
      *         @OA\MediaType(
      *             mediaType="application/json"
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=500,
      *         description="Erro interno do servidor"
@@ -249,10 +265,9 @@ class ProductController extends Controller
      *         description="Não autorizado"
      *     )
      * )
-     */ 
-
+     */
     public function search(Request $request)
-    {   
+    {
         $query = $request->input('query');
         $products = $this->productService->search($query);
 
